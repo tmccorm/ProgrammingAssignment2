@@ -1,7 +1,13 @@
-## Put comments here that give an overall description of what your
-## functions do
+## Functions perform tasks required for Assignment 2 (Lexical Scoping).
+## makeCacheMatrix returns a list containing functions for setting and getting the matrix in
+## addition to setting and getting the inverse.
+## Usage:
+## M <- matrix(c(10,11,12,13,14,15,2,3,4), nrow=3, ncol=3)
+## cacheMatrix <- makeCacheMatrix(M)
+## cacheSolve(cacheMatrix)
 
-## Write a short comment describing this function
+## makeCacheMatrix accepts a matrix parameter, x, and returns a list, with members for 
+##setting and getting the matrix in addition to setting and getting the inverse.
 
 makeCacheMatrix <- function(x = matrix()) {
   m <- NULL
@@ -17,19 +23,18 @@ makeCacheMatrix <- function(x = matrix()) {
        getinverse = getinverse)
 }
 
-## Write a short comment describing this function
+## Return the inverse of the matrix cached by the makeCacheMatrix function
+##
 
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
   m <- x$getinverse()
   data <- x$get()
-  if(!is.null(m) 
-     ## & !identical(x,data)
-     ) {
+  if(!is.null(m) & !identical(x,data)) {
     message("getting cached data")
     return(m)
   }
-  ##data <- x$get()
+  data <- x$get()
   print(data)
   flush.console()
   m <- solve(data)
